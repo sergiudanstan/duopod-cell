@@ -1711,7 +1711,7 @@ function setRobot(tcp) {
   return pose;
 }
 
-// ---- vendor CAD (local only): _cad/duopod.glb, git-ignored. ?cad=0 keeps the procedural model.
+// ---- vendor CAD (local server only): _cad/duopod.glb, git-ignored. ?cad=0 keeps the procedural model.
 const CAD_PART = {
   "MT_WST00065198:1": "head", "MT_WST00055121:1": "head", "MT_WST00055121:2": "head",
   "MT_WST00061011:1": "upperL", "MT_WST00061012:1": "upperR", "MT_WST00061013:1": "lowerL", "MT_WST00061013:2": "lowerR",
@@ -1736,7 +1736,8 @@ function cadCheck() {     // mm between the CAD plate's bottom face centre and t
   return Math.hypot(c.x - robotPose.flange[0], bottom - robotPose.flange[1]) * 1000;
 }
 (async () => {
-  if (new URLSearchParams(location.search).get("cad") === "0" || location.protocol === "file:") return;
+  // the vendor GLB is never published: try it only on a local server
+  if (new URLSearchParams(location.search).get("cad") === "0" || !["localhost", "127.0.0.1"].includes(location.hostname)) return;
   try {
     const { GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js");
     const gltf = await new GLTFLoader().loadAsync("_cad/duopod.glb");

@@ -4,7 +4,7 @@ A browser digital twin of a conveyor-to-conveyor transfer cell. A ceiling-mounte
 
 The robot works in the vertical plane across the two belts. On the infeed belt, a fixed end stop holds the carton in that plane. An escapement (blade + side clamp) lets the next carton go only after the robot has lifted the current one clear.
 
-Local only: no remote, no Pages.
+**Live:** https://sergiudanstan.github.io/duopod-cell/ (procedural robot; the vendor CAD is never published).
 
 ## Robot data
 
@@ -62,7 +62,7 @@ node tools/record.mjs          # 1920x1080 film -> ~/Downloads/duopod_cell/duopo
    uv run --python 3.13 --with cascadio==0.1.1 python tools/cad/step2glb.py _cad/src/3D-model_A_00913.stp _cad/duopod.glb
    ```
 
-When the page is served over http and `_cad/duopod.glb` exists, the vendor parts replace the procedural model. Add `?cad=0` to force the procedural robot. Autonox and DuoPod are trademarks of their owner.
+When the page is served from localhost / 127.0.0.1 and `_cad/duopod.glb` exists, the vendor parts replace the procedural model. Add `?cad=0` to force the procedural robot. Autonox and DuoPod are trademarks of their owner.
 
 ## Layout
 
