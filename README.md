@@ -1,5 +1,10 @@
 # DuoPod Transfer Cell
 
+[![CI](https://github.com/sergiudanstan/duopod-cell/actions/workflows/ci.yml/badge.svg)](https://github.com/sergiudanstan/duopod-cell/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/sergiudanstan/duopod-cell/actions/workflows/codeql.yml/badge.svg)](https://github.com/sergiudanstan/duopod-cell/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sergiudanstan/duopod-cell/badge)](https://scorecard.dev/viewer/?uri=github.com/sergiudanstan/duopod-cell)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A browser digital twin of a conveyor-to-conveyor transfer cell. A ceiling-mounted 2-axis parallel robot (Autonox DuoPod RVS2-1000-3kg, A_00913) picks 3 kg cartons from an infeed belt and places them on the outfeed belt beside it.
 
 The robot works in the vertical plane across the two belts. On the infeed belt, a fixed end stop holds the carton in that plane. An escapement (blade + side clamp) lets the next carton go only after the robot has lifted the current one clear.
@@ -67,3 +72,7 @@ When the page is served from localhost / 127.0.0.1 and `_cad/duopod.glb` exists,
 ## Layout
 
 `src/page.html` is the page shell. `src/js/*.js` are concatenated in lexical order into one module, and `index.html` is generated from them. `10-logic.js` (between `@@logic-start` and `@@logic-end`) is pure JS, and `tests/run.mjs` evaluates it in Node.
+
+## Development
+
+`index.html` is generated from `src/`; CI fails if the committed copy differs from a fresh `node tools/build.mjs`. `npm ci && npm test` runs the logic tests and the headless smoke test (needs Google Chrome). See [CONTRIBUTING.md](CONTRIBUTING.md) for branches and releases, [SECURITY.md](SECURITY.md) for reporting vulnerabilities, and [CHANGELOG.md](CHANGELOG.md) for history.
